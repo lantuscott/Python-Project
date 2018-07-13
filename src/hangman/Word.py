@@ -16,15 +16,13 @@ class Word:
     def read_words_from_file(self):
         path_to_utils = self.path_to_project+"/utils"
         words = open(path_to_utils+'/words.txt', 'r')
-        for word in words:
-            word = word.split()
-            print(word)
-        self.my_word.extend(word)
+        self.my_word = words.read().split()
+        print(self.my_word)
         words.close()
 
     def get_my_words(self):
         return self.my_word
 
 
-words = Word()
-print(words.get_word())
+wordObject = Word()
+wordObject.read_words_from_file()
