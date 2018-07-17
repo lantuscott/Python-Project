@@ -3,26 +3,41 @@
 #
 import os
 
+
 class Word:
-    my_word = []
-    path_to_project = os.path.abspath(os.path.join(__file__, "../../"))
+
+    """
+    This class creates a list of words and returns it
+    """
+
+    my_words = []  # Empty list to store the dictionary
+    path_to_project = os.path.abspath(os.path.join(__file__, "../../"))  # This points to the final_project folder
+
+    """
+    This is the constructor of the class in which immediately calls the read_words_from_file definition when an object
+    is created
+    """
 
     def __init__(self):
-        self.my_word = []
+        self.read_words_from_file()
 
-    def get_word(self):
-        return self.my_word
+    """
+    This definition simply put, reads the file containing the words, puts them in a list called my_words
+    """
 
     def read_words_from_file(self):
         path_to_utils = self.path_to_project+"/utils"
         words = open(path_to_utils+'/words.txt', 'r')
-        self.my_word = words.read().split()
-        print(self.my_word)
+        self.my_words = words.read().split()
         words.close()
 
+    """
+    This definition returns the list of words
+    """
+
     def get_my_words(self):
-        return self.my_word
+        return self.my_words
 
 
-wordObject = Word()
-wordObject.read_words_from_file()
+# wordObject = Word()
+# print(wordObject.get_my_words())
