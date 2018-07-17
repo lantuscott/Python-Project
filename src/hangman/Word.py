@@ -7,7 +7,7 @@ import os
 class Word:
 
     """
-    This class creates a list of words and returns it
+    This class reads words from a txt file, creates a list of words and returns it
     """
 
     my_words = []  # Empty list to store the dictionary
@@ -18,7 +18,7 @@ class Word:
     is created
     """
 
-    def __init__(self):
+    def __init__(self):  # Constructor
         self.read_words_from_file()
 
     """
@@ -38,6 +38,20 @@ class Word:
     def get_my_words(self):
         return self.my_words
 
+    '''
+    A definition that calls the list (get_my_words()) picks a random item from the list and returns it
+    self.method
+    self.get_my_words()
+    '''
 
-# wordObject = Word()
-# print(wordObject.get_my_words())
+
+wordObject = Word()
+
+for x in range(len(wordObject.get_my_words())):
+    print(wordObject.get_my_words()[x])
+
+
+
+
+
+
