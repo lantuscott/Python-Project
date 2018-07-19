@@ -5,6 +5,7 @@ import os
 
 import random
 
+acc = 0
 
 class Word:
 
@@ -50,11 +51,49 @@ class Word:
         ranWord = self.get_my_words()[random.randint(0, 99)]
         return ranWord
 
+# Checks if letter is in mystery word and tracks number of guesses made and remaining
+    def game_logic(self):
+        acc = 0
+
+        # User input to guess letter
+        while True:
+            guess = input("Enter a letter: ")
+            guess = guess.lower()  # converts input to uppercase
+
+            # Displays how many guesses you have made
+            for attempts in range(1):
+                attempts = 10
+                print("Attempt #:", acc + 1)
+                acc = acc + 1
+                attempts = attempts - acc
+
+                # Checks if input is valid (a single letter or if the input is same as length of the mystery word)
+                if guess in "abcdefghijklmnopqrstuvwxyz":
+                    if len(guess) == 0 or len(guess) == len(guess):
+                        print("You guessed: ", guess)
+
+                        #Checks if letter guessed is in mystery word
+                        if guess in self.random_word():
+                            print("you guessed it!")
+                        # could also be word.find(guess), if true return whatever if false continue
+                        else:
+                            print("try again")
+                            acc = acc + 1
+
+                # If input is not valid prints error
+                elif guess not in "abcdefghijklmnopqrstuvwxyz":
+                    print("Input is not valid, Please enter a letter between 'a' and 'z': ")
+
+                # Prints number of guesses remaining
+                print("You have", attempts, "attempts remaining")
+                if attempts <= 0:
+                    print("Game Over!")
 
 def main():
     wordObject = Word()
 
-    print(wordObject.random_word())
+    print("Your word to guess has", len(wordObject.random_word()), "letters.")
+    wordObject.game_logic()
 
 if __name__ == '__main__':
     main()
