@@ -3,6 +3,8 @@
 #
 import os
 
+import random
+
 
 class Word:
 
@@ -43,14 +45,19 @@ class Word:
     self.method
     self.get_my_words()
     '''
+    def random_word(self):      # selects a word from dictionary to
+        #  start game
+        ranWord = self.get_my_words()[random.randint(0, 99)]
+        return ranWord
 
 
-wordObject = Word()
+def main():
+    wordObject = Word()
 
-for x in range(len(wordObject.get_my_words())):
-    print(wordObject.get_my_words()[x])
+    print(wordObject.random_word())
 
-
+if __name__ == '__main__':
+    main()
 
 
 
