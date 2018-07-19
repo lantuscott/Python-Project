@@ -4,13 +4,17 @@
 from tkinter import Tk, Label, Button, Frame, Entry, StringVar, Canvas
 import turtle
 
-class Hangman:
+from src.hangman.Word import Word
 
+
+class Hangman:
     """
     This class creates a list of words and does different things to it like returning the list
     """
 
     def __init__(self):
+        self.dictionary = Word()
+
         self.root = Tk()
         self.root.title("Hangman, The NEWER")
 
@@ -19,7 +23,7 @@ class Hangman:
 
         leo = turtle.RawTurtle(self.canvas)
         leo.shape("turtle")
-        leo.forward(100)
+        # leo.forward(100)
 
         letter = StringVar()
         self.word = Entry(self.root, textvariable=letter, width=2)
@@ -28,18 +32,20 @@ class Hangman:
         self.label = Label(self.root, text="This is our first GUI!")
         self.label.pack()
 
-        self.greet_button = Button(self.root, text="Greet", command=self.greet)
+        self.greet_button = Button(self.root, text="Greet", command=lambda: self.move_turtle(leo))
         self.greet_button.pack()
-
-        self.close_button = Button(self.root, text="Close", command=self.root.quit)
-        self.close_button.pack()
 
         self.root.mainloop()
 
-    def greet(self):
-        print("Greetings!")
-
-# creates and object and starts the game
-game = Hangman()
+    @staticmethod
+    def move_turtle(leo):
+        return leo.forward(100)
 
 
+def main():
+    # creates and object and starts the game
+    game = Hangman()
+
+
+if __name__ == '__main__':
+    main()
