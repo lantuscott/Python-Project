@@ -20,41 +20,34 @@ class Word:
     is created
     """
 
-    def __init__(self):  # Constructor
-        self.read_words_from_file()
+    # def __init__(self):  # Constructor
+    #     self.read_words_from_file()
 
     """
     This definition simply put, reads the file containing the words, puts them in a list called my_words
     """
-
-    def read_words_from_file(self):
-        path_to_utils = self.path_to_project+"/utils"
+    @staticmethod
+    def read_words_from_file():
+        path_to_utils = Word.path_to_project+"/utils"
         words = open(path_to_utils+'/words.txt', 'r')
-        self.my_words = words.read().split()
+        Word.my_words = words.read().split()
         words.close()
-
-    """
-    This definition returns the list of words
-    """
-
-    def get_my_words(self):
-        return self.my_words
 
     '''
     A definition that calls the list (get_my_words()) picks a random item from the list and returns it
     self.method
     self.get_my_words()
     '''
-    def random_word(self):      # selects a word from dictionary to
+    @staticmethod
+    def random_word():      # selects a word from dictionary to
         #  start game
-        ranWord = self.get_my_words()[random.randint(0, 99)]
+        ranWord = Word.my_words[random.randint(0, 99)]
         return ranWord
 
 
 def main():
-    wordObject = Word()
-
-    print(wordObject.random_word())
+    Word.read_words_from_file()
+    print(Word.random_word())
 
 if __name__ == '__main__':
     main()
