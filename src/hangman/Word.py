@@ -95,20 +95,6 @@ class Word:
                 print("You have", attempts, "attempts remaining")
                 if attempts <= 0:
                     print("Game Over!")
+                    return -1  #  I use this to exit the While loop
             guessed_letters += ' ' + guess
             print("Letters you have tried: ", guessed_letters)
-
-def main():
-    wordObject = Word()
-
-    display_ranWord = wordObject.game_logic()
-    print(display_ranWord)
-    print("Your word to guess has", display_ranWord, "letters.")
-    wordObject.game_logic()
-
-if __name__ == '__main__':
-    main()
-
-
-
-
