@@ -26,10 +26,21 @@ class Word:
     This definition simply put, reads the file containing the words, puts them in a list called my_words
     """
 
+    def game_difficulty(self):
+        return input("What difficulty do you want? Easy=e, Medium=m, Hard=h: ")
+
     def read_words_from_file(self):
         path_to_utils = self.path_to_project + "/utils"
-        words = open(path_to_utils + '/words.txt', 'r')
-        self.my_words = words.read().split()
+        difficulty = self.game_difficulty()
+        if difficulty == "e":
+            words = open(path_to_utils + '/easy_words.txt', 'r')
+            self.my_words = words.read().split()
+        elif difficulty == "m":
+            words = open(path_to_utils + '/medium_words.txt', 'r')
+            self.my_words = words.read().split()
+        elif difficulty == "h":
+            words = open(path_to_utils + '/hard_words.txt', 'r')
+            self.my_words = words.read().split()
         words.close()
 
     """
