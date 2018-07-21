@@ -7,10 +7,7 @@ class Drawer:
 
     def game_screen(self):
         wn = t.Screen()
-<<<<<<< HEAD
-=======
         t.speed(10) # Fastest speed
->>>>>>> MariBranch
         t.hideturtle()
 
         self.game_intro()
@@ -103,9 +100,6 @@ class Drawer:
         t.forward(150)
         t.penup()
 
-<<<<<<< HEAD
-
-=======
     def method_factory(self, methodNumber):
         if methodNumber == 0:
             self.draw_base1()
@@ -129,4 +123,3 @@ class Drawer:
             self.draw_leftleg()
             t.write("Game Over!")
             t.exitonclick()
->>>>>>> MariBranch
