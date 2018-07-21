@@ -28,7 +28,12 @@ class Word:
 
     def read_words_from_file(self):
         path_to_utils = self.path_to_project + "/utils"
-        words = open(path_to_utils + '/easy_words.txt', 'r')
+        if self.game_difficulty()== "e":
+            words = open(path_to_utils + '/easy_words.txt', 'r')
+        elif self.game_difficulty() == "m":
+            words = open(path_to_utils + '/medium_words.txt', 'r')
+        elif self.game_difficulty() == "h":
+            words = open(path_to_utils + '/hard_words.txt', 'r')
         self.my_words = words.read().split()
         words.close()
 
@@ -122,4 +127,7 @@ class Word:
         return self.attempt_number
 
     def game_difficulty(self):
-        difficulty = input("What difficulty do you want? Easy=e, Hard=h")
+        difficulty = input("What difficulty do you want? Easy=e, Medium=m, Hard=h: ")
+        return difficulty.lower()
+
+
