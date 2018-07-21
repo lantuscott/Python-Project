@@ -53,7 +53,10 @@ class Word:
 
 # Checks if letter is in mystery word and tracks number of guesses made and remaining
     def game_logic(self):
+        display_ranWord = self.random_word()
+        print(display_ranWord)
         acc = 0
+        guessed_letters = ''
 
         # User input to guess letter
         while True:
@@ -63,23 +66,27 @@ class Word:
             # Displays how many guesses you have made
             for attempts in range(1):
                 attempts = 10
-                print("Attempt #:", acc + 1)
                 acc = acc + 1
+                print("Attempt #:", acc)
                 attempts = attempts - acc
 
                 # Checks if input is valid (a single letter or if the input is same as length of the mystery word)
                 if guess in "abcdefghijklmnopqrstuvwxyz":
-                    if len(guess) == 0 or len(guess) == len(guess):
+                    if len(guess) == 0:
                         print("You guessed: ", guess)
 
                         #Checks if letter guessed is in mystery word
-                        if guess in self.random_word():
+                        # display_ranWord = self.random_word()
+                        # print(display_ranWord)
+                        if guess in display_ranWord:
                             print("you guessed it!")
+                            # guessed_words = guess + guess
+                            # print("Letters you have tried: ", guessed_words[1:])
                         # could also be word.find(guess), if true return whatever if false continue
                         else:
                             print("try again")
-                            acc = acc + 1
-
+                            # guessed_words = guess + guess
+                            # print("Letters you have tried: ", guessed_words[1:])
                 # If input is not valid prints error
                 elif guess not in "abcdefghijklmnopqrstuvwxyz":
                     print("Input is not valid, Please enter a letter between 'a' and 'z': ")
@@ -88,11 +95,15 @@ class Word:
                 print("You have", attempts, "attempts remaining")
                 if attempts <= 0:
                     print("Game Over!")
+            guessed_letters += ' ' + guess
+            print("Letters you have tried: ", guessed_letters)
 
 def main():
     wordObject = Word()
 
-    print("Your word to guess has", len(wordObject.random_word()), "letters.")
+    display_ranWord = wordObject.game_logic()
+    print(display_ranWord)
+    print("Your word to guess has", display_ranWord, "letters.")
     wordObject.game_logic()
 
 if __name__ == '__main__':
