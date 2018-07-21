@@ -1,19 +1,26 @@
 # Leonardo Farinha
 
+import threading
+
 
 def main():
     import src.hangman.Word as Word
     import src.hangman.Drawer as Drawer
-<<<<<<< Updated upstream
-    guivaina = Drawer.Drawer()
-    guivaina.game_screen()
-    # gameStart = Word.Word()
-    # gameStart.game_logic()
-=======
-    gameStart = Word.Word()
-    gameStart.game_logic()
+    import src.hangman.Beast as Beast
 
->>>>>>> Stashed changes
+    # game = Beast.Beast()
+
+
+    game = Word.Word()
+    game.game_logic()
+
+    # gui = Drawer.Drawer()
+
+
+
+
+
+
 
 if __name__ == '__main__':
     main()
