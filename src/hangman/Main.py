@@ -1,13 +1,25 @@
 # Leonardo Farinha
 
+import threading
+
 
 def main():
     import src.hangman.Word as Word
     import src.hangman.Drawer as Drawer
-    gameStart = Word.Word()
-    gameStart.game_logic()
-    guivaina = Drawer.GuiConsole()
-    guivaina.game_screen()
+    import src.hangman.Beast as Beast
+
+    # game = Beast.Beast()
+
+
+    game = Word.Word()
+    game.game_logic()
+
+    # gui = Drawer.Drawer()
+
+
+
+
+
 
 
 if __name__ == '__main__':

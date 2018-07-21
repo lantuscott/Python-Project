@@ -1,14 +1,13 @@
-#
-# This script will access the words used by the GUI
-#
-import os
+# Leonardo Farinha
 import random
+import os
+import turtle as t
 
 
-class Word:
+class Beast:
     """
-    This class reads words from a txt file, creates a list of words and returns it
-    """
+        This class reads words from a txt file, creates a list of words and returns it
+        """
 
     my_words = []  # Empty list to store the dictionary
     path_to_project = os.path.abspath(os.path.join(__file__, "../../"))  # This points to the final_project folder
@@ -21,6 +20,10 @@ class Word:
 
     def __init__(self):  # Constructor
         self.read_words_from_file()
+        wn = t.Screen()
+        self.game_intro()
+        self.game_logic()
+
 
     """
     This definition simply put, reads the file containing the words, puts them in a list called my_words
@@ -52,17 +55,13 @@ class Word:
 
     # Checks if letter is in mystery word and tracks number of guesses made and remaining
     def game_logic(self):
-        from src.hangman import Drawer
-        gui = Drawer.Drawer()
-        gui.game_screen()
         original_word_to_guess = self.random_word()
         mystery_word = self.mystery_word(original_word_to_guess)
         acc = 0
         guessed_letters = ''
         progress = ''
+        word_to_list = []
         temp = ""
-        objectList = [gui]
-        methodList = ['draw_base2()']
         remaining_letters = original_word_to_guess
         word_to_list = list(mystery_word)
         print("The words is :", original_word_to_guess)
@@ -92,8 +91,6 @@ class Word:
                             temp = "".join(word_to_list)
                             print("you guessed one letter!, remaining letters to be guessed: ", remaining_letters)
                         else:  # Here call the Turtle and create a figure every time a user misses
-                            gui.method_factory(self.attempt_number)
-                            self.attempt_number += 1
                             print("try again")
                 # If input is not valid prints error
                 elif guess not in "abcdefghijklmnopqrstuvwxyz":
@@ -118,5 +115,108 @@ class Word:
             stars += "*"
         return stars
 
-    def get_wrong_attempt(self):
-        return self.attempt_number
+    def game_screen(self):
+        wn = t.Screen()
+        # t.speed(1)
+
+        self.game_intro()
+        # self.draw_base1()
+        # self.draw_base2()
+        # self.draw_base3()
+        # self.draw_base4()
+        # self.draw_circle()
+        # self.draw_body()
+        # self.draw_rightarm()
+        # self.draw_leftarm()
+        # self.draw_rightleg()
+        # self.draw_leftleg()
+        t.exitonclick()
+
+    def game_intro(self):
+        t.penup()
+        t.goto(-200, 300)
+        t.write("Let's play some Hangman!", font=("Calibri", 24, "bold"))
+
+    def draw_base1(self):
+        t.goto(-250, -350)
+        t.pendown()
+        t.begin_fill()
+        t.forward(450)
+        t.right(90)
+        t.forward(50)
+        t.right(90)
+        t.forward(450)
+        t.right(90)
+        t.forward(50)
+        t.right(90)
+        t.end_fill()
+        t.penup()
+        t.exitonclick()
+
+    def draw_base2(self):
+        t.pendown()
+        t.begin_fill()
+        t.left(90)
+        t.forward(550)
+        t.right(90)
+        t.forward(5)
+        t.right(90)
+        t.forward(550)
+        t.end_fill()
+        t.penup()
+        t.goto(-250, 200)
+        t.left(90)
+
+    def draw_base3(self):
+        t.pendown()
+        t.forward(230)
+        t.penup()
+
+    def draw_base4(self):
+        t.pendown()
+        t.right(90)
+        t.forward(100)
+        t.penup()
+        t.left(90)
+
+    def draw_circle(self):
+        t.goto(-20, 0)
+        t.pendown()
+        t.circle(50)
+        t.penup()
+
+    def draw_body(self):
+        t.pendown()
+        t.right(90)
+        t.forward(200)
+        t.penup()
+
+    def draw_rightarm(self):
+        t.backward(200)
+        t.pendown()
+        t.left(55)
+        t.forward(150)
+        t.penup()
+
+    def draw_leftarm(self):
+        t.backward(150)
+        t.pendown()
+        t.right(110)
+        t.forward(150)
+        t.penup()
+
+    def draw_rightleg(self):
+        t.backward(150)
+        t.left(55)
+        t.forward(200)
+        t.pendown()
+        t.left(45)
+        t.forward(150)
+        t.penup()
+
+    def draw_leftleg(self):
+        t.backward(150)
+        t.right(90)
+        t.pendown()
+        t.forward(150)
+        t.penup()
