@@ -53,9 +53,9 @@ class Word:
 
 # Checks if letter is in mystery word and tracks number of guesses made and remaining
     def game_logic(self):
-        # display_ranWord = self.random_word()
-        display_ranWord = "tree"
+        display_ranWord = self.random_word()
         print(display_ranWord)
+        attempts = print("You have", len(display_ranWord)*2, "attempts")
         acc = 0
         guessed_letters = ''
         progress = ''
@@ -67,7 +67,7 @@ class Word:
 
             # Displays how many guesses you have made
             for attempts in range(1):
-                attempts = 10
+                attempts = len(display_ranWord)*2
                 acc += 1
                 print("Attempt #:", acc)
                 attempts = attempts - acc
@@ -75,7 +75,7 @@ class Word:
                 if guess in "abcdefghijklmnopqrstuvwxyz":
                     if len(guess) == 1:
                         progress += guess
-                        print("You guessed: ", guess)
+                        # print("You guessed: ", guess)
                         if guess in display_ranWord:
                             print("you guessed one letter!")
                         else: # Here call the Turtle and create a figure every time a user misses
