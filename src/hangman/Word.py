@@ -28,7 +28,7 @@ class Word:
 
     def read_words_from_file(self):
         path_to_utils = self.path_to_project + "/utils"
-        words = open(path_to_utils + '/words.txt', 'r')
+        words = open(path_to_utils + '/easy_words.txt', 'r')
         self.my_words = words.read().split()
         words.close()
 
@@ -85,7 +85,7 @@ class Word:
                     if len(guess) == 1:
                         progress += guess
                         # print("You guessed: ", guess)
-                        if guess in remaining_letters:
+                        if guess in remaining_letters: # this is the part where you win
                             remaining_letters = remaining_letters.replace(guess, '')
                             guessed_position = word_to_display.index(guess)
                             word_to_list[guessed_position] = guess
@@ -106,7 +106,7 @@ class Word:
 
                 # When you guess the word, it will compare it with your progress, if it's a match the user wins
                 if remaining_letters == "" and attempts > 0:
-                    print("You guessed the word! HOORAY!!!")
+                    +print("You guessed the word! HOORAY!!!")
                     return 1
                 elif attempts <= 0:  # if attempts reach out the max, the user loses
                     print("Game Over!")
@@ -120,3 +120,6 @@ class Word:
 
     def get_wrong_attempt(self):
         return self.attempt_number
+
+    def game_difficulty(self):
+        difficulty = input("What difficulty do you want? Easy=e, Hard=h")

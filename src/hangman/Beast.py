@@ -31,7 +31,7 @@ class Beast:
 
     def read_words_from_file(self):
         path_to_utils = self.path_to_project + "/utils"
-        words = open(path_to_utils + '/words.txt', 'r')
+        words = open(path_to_utils + '/easy_words.txt', 'r')
         self.my_words = words.read().split()
         words.close()
 
