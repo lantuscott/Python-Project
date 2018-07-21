@@ -104,6 +104,12 @@ class Drawer:
         t.pencolor("red")
         t.write("Game Over!", font=("Calibri", 40, "bold"))
 
+    def you_won(self):
+        t.goto(-30, -50)
+        t.pencolor("green")
+        t.write("Congratulations, you won!", align="center", font=("Calibri", 40, "bold"))
+        t.exitonclick()
+
     def method_factory(self, methodNumber):
         if methodNumber == 0:
             self.draw_base1()
@@ -126,4 +132,5 @@ class Drawer:
         elif methodNumber == 9:
             self.draw_leftleg()
             self.game_over()
+            print("Game Over!!")
             t.exitonclick()

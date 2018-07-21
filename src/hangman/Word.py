@@ -107,6 +107,7 @@ class Word:
                 # When you guess the word, it will compare it with your progress, if it's a match the user wins
                 if remaining_letters == "" and attempts > 0:
                     print("You guessed the word! HOORAY!!!")
+                    gui.you_won()
                     return 1
                 elif attempts <= 0:  # if attempts reach out the max, the user loses
                     print("Game Over!")
