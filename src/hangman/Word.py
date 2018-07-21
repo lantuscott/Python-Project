@@ -12,7 +12,7 @@ class Word:
 
     my_words = []  # Empty list to store the dictionary
     path_to_project = os.path.abspath(os.path.join(__file__, "../../"))  # This points to the final_project folder
-    attempt_number = 0
+    attempt_number = 1
 
     """
     This is the constructor of the class in which immediately calls the read_words_from_file definition when an object
@@ -26,15 +26,22 @@ class Word:
     This definition simply put, reads the file containing the words, puts them in a list called my_words
     """
 
+    def game_difficulty(self):
+        return input("What difficulty do you want? Easy=e, Medium=m, Hard=h: ")
+
+
     def read_words_from_file(self):
         path_to_utils = self.path_to_project + "/utils"
-        if self.game_difficulty()== "e":
+        difficulty = self.game_difficulty()
+        if difficulty == "e":
             words = open(path_to_utils + '/easy_words.txt', 'r')
-        elif self.game_difficulty() == "m":
+            self.my_words = words.read().split()
+        elif difficulty == "m":
             words = open(path_to_utils + '/medium_words.txt', 'r')
-        elif self.game_difficulty() == "h":
+            self.my_words = words.read().split()
+        elif difficulty == "h":
             words = open(path_to_utils + '/hard_words.txt', 'r')
-        self.my_words = words.read().split()
+            self.my_words = words.read().split()
         words.close()
 
     """
@@ -52,7 +59,8 @@ class Word:
 
     def random_word(self):  # selects a word from dictionary to
         #  start game
-        ranWord = self.get_my_words()[random.randint(0, 99)]
+        list = self.get_my_words()
+        ranWord = list[random.randint(0, len(list)-1)]
         return ranWord
 
     # Checks if letter is in mystery word and tracks number of guesses made and remaining
@@ -68,9 +76,10 @@ class Word:
         temp = ""
         objectList = [gui]
         methodList = ['draw_base2()']
-        remaining_letters = original_word_to_guess
+        word_to_display = original_word_to_guess
         word_to_list = list(mystery_word)
         print("The words is :", original_word_to_guess)
+        print('----------------------------------------------------')
         # User input to guess letter
         while True:
             print("Starred word: ", temp)
@@ -79,7 +88,7 @@ class Word:
 
             # Displays how many guesses you have made
             for attempts in range(1):
-                attempts = len(original_word_to_guess) * 2
+                attempts = 10
                 acc += 1
                 print("Attempt #:", acc)
                 attempts = attempts - acc
@@ -90,16 +99,16 @@ class Word:
                     if len(guess) == 1:
                         progress += guess
                         # print("You guessed: ", guess)
-                        if guess in remaining_letters: # this is the part where you win
-                            remaining_letters = remaining_letters.replace(guess, '')
+                        if guess in word_to_display: # this is the part where you win
+                            word_to_display = word_to_display.replace(guess, '')
                             guessed_position = word_to_display.index(guess)
                             word_to_list[guessed_position] = guess
                             temp = "".join(word_to_list)
-                            print("you guessed one letter!, remaining letters to be guessed: ", remaining_letters)
+                            print("you guessed one letter!, remaining letters to be guessed: ", word_to_display)
                         else:  # Here call the Turtle and create a figure every time a user misses
                             gui.method_factory(self.attempt_number)
                             self.attempt_number += 1
-                            print("try again")
+                            print("try again, attempsts -> ", attempts, " attempt_number -> ", self.attempt_number)
                 # If input is not valid prints error
                 elif guess not in "abcdefghijklmnopqrstuvwxyz":
                     print("Input is not valid, Please enter a letter between 'a' and 'z': ")
@@ -110,12 +119,13 @@ class Word:
                 print("Letters you have tried: ", guessed_letters)
 
                 # When you guess the word, it will compare it with your progress, if it's a match the user wins
-                if remaining_letters == "" and attempts > 0:
+                if word_to_display == "" and attempts > 0:
                     +print("You guessed the word! HOORAY!!!")
                     return 1
-                elif attempts <= 0:  # if attempts reach out the max, the user loses
+                elif attempts == 0 or self.attempt_number == 10:  # if attempts reach out the max, the user loses
                     print("Game Over!")
                     return -1  # I use this to exit the While loop
+            print('--------------------------------------------------')
 
     def mystery_word(self, mystery_word):
         stars = ""
@@ -125,9 +135,4 @@ class Word:
 
     def get_wrong_attempt(self):
         return self.attempt_number
-
-    def game_difficulty(self):
-        difficulty = input("What difficulty do you want? Easy=e, Medium=m, Hard=h: ")
-        return difficulty.lower()
-
 
