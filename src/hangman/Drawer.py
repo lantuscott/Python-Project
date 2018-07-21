@@ -6,7 +6,7 @@ class Drawer:
 
     def game_screen(self):
         wn = t.Screen()
-        # t.speed(1)
+        t.hideturtle()
 
         self.game_intro()
         self.draw_base1()
@@ -109,6 +109,5 @@ class Drawer:
         t.pendown()
         t.forward(150)
         t.penup()
-
 
 
