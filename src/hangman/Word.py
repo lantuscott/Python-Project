@@ -5,6 +5,7 @@ import os
 
 import random
 
+acc = 0
 
 class Word:
 
@@ -50,15 +51,48 @@ class Word:
         ranWord = self.get_my_words()[random.randint(0, 99)]
         return ranWord
 
+# Checks if letter is in mystery word and tracks number of guesses made and remaining
+    def game_logic(self):
+        # display_ranWord = self.random_word()
+        display_ranWord = "tree"
+        print(display_ranWord)
+        acc = 0
+        guessed_letters = ''
+        progress = ''
 
-def main():
-    wordObject = Word()
+        # User input to guess letter
+        while True:
+            guess = input("Enter a letter: ")
+            guess = guess.lower()  # converts input to uppercase
 
-    print(wordObject.random_word())
+            # Displays how many guesses you have made
+            for attempts in range(1):
+                attempts = 10
+                acc += 1
+                print("Attempt #:", acc)
+                attempts = attempts - acc
+                # Checks if input is valid (a single letter or if the input is same as length of the mystery word)
+                if guess in "abcdefghijklmnopqrstuvwxyz":
+                    if len(guess) == 1:
+                        progress += guess
+                        print("You guessed: ", guess)
+                        if guess in display_ranWord:
+                            print("you guessed one letter!")
+                        else: # Here call the Turtle and create a figure every time a user misses
+                            print("try again")
+                # If input is not valid prints error
+                elif guess not in "abcdefghijklmnopqrstuvwxyz":
+                    print("Input is not valid, Please enter a letter between 'a' and 'z': ")
+                # Prints number of guesses remaining
+                print("You have", attempts, "attempts remaining")
 
-if __name__ == '__main__':
-    main()
+                guessed_letters += ' ' + guess
+                print("Letters you have tried: ", guessed_letters)
 
-
-
-
+                # When you guess the word, it will compare it with your progress, if it's a match the user wins
+                if progress == display_ranWord and attempts > 0:
+                    print("You guessed the word! HOORAY!!!")
+                    return 1
+                elif attempts <= 0: # if attempts reach out the max, the user loses
+                    print("Game Over!")
+                    return -1  #  I use this to exit the While loop

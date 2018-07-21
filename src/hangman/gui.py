@@ -40,6 +40,6 @@ class Hangman:
         print("Greetings!")
 
 # creates and object and starts the game
-game = Hangman()
+# game = Hangman()
 
 
