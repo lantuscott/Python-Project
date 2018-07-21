@@ -103,6 +103,7 @@ class Drawer:
         t.goto(-150, -50)
         t.pencolor("red")
         t.write("Game Over!", font=("Calibri", 40, "bold"))
+        t.exitonclick()
 
     def you_won(self):
         t.goto(-30, -50)
@@ -111,26 +112,29 @@ class Drawer:
         t.exitonclick()
 
     def method_factory(self, methodNumber):
-        if methodNumber == 0:
+        if methodNumber == 1:
             self.draw_base1()
-        elif methodNumber == 1:
-            self.draw_base2()
+            print("Methodnumber", methodNumber)
         elif methodNumber == 2:
-            self.draw_base3()
+            self.draw_base2()
         elif methodNumber == 3:
-            self.draw_base4()
+            self.draw_base3()
         elif methodNumber == 4:
-            self.draw_face()
+            self.draw_base4()
         elif methodNumber == 5:
-            self.draw_body()
+            self.draw_face()
         elif methodNumber == 6:
-            self.draw_rightarm()
+            self.draw_body()
         elif methodNumber == 7:
-            self.draw_leftarm()
+            self.draw_rightarm()
         elif methodNumber == 8:
-            self.draw_rightleg()
+            self.draw_leftarm()
         elif methodNumber == 9:
+            self.draw_rightleg()
+            print("Methodnumber", methodNumber)
+        elif methodNumber == 10:
+            print("Methodnumber", methodNumber)
             self.draw_leftleg()
             self.game_over()
-            print("Game Over!!")
+            # print("Game Over!!")
             t.exitonclick()
