@@ -2,12 +2,11 @@
 
 import turtle as t
 
-
 class Drawer:
 
     def game_screen(self):
         wn = t.Screen()
-        t.speed(10) # Fastest speed
+        t.speed("fastest") # Fastest speed
         t.hideturtle()
 
         self.game_intro()
@@ -58,7 +57,7 @@ class Drawer:
         t.penup()
         t.left(90)
 
-    def draw_circle(self):
+    def draw_face(self):
         t.goto(-20, 0)
         t.pendown()
         t.circle(50)
@@ -100,6 +99,11 @@ class Drawer:
         t.forward(150)
         t.penup()
 
+    def game_over(self):
+        t.goto(-150, -50)
+        t.pencolor("red")
+        t.write("Game Over!", font=("Calibri", 40, "bold"))
+
     def method_factory(self, methodNumber):
         if methodNumber == 0:
             self.draw_base1()
@@ -110,7 +114,7 @@ class Drawer:
         elif methodNumber == 3:
             self.draw_base4()
         elif methodNumber == 4:
-            self.draw_circle()
+            self.draw_face()
         elif methodNumber == 5:
             self.draw_body()
         elif methodNumber == 6:
@@ -121,5 +125,5 @@ class Drawer:
             self.draw_rightleg()
         elif methodNumber == 9:
             self.draw_leftleg()
-            t.write("Game Over!")
+            self.game_over()
             t.exitonclick()
