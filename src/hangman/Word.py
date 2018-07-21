@@ -53,10 +53,12 @@ class Word:
 
 # Checks if letter is in mystery word and tracks number of guesses made and remaining
     def game_logic(self):
-        display_ranWord = self.random_word()
+        # display_ranWord = self.random_word()
+        display_ranWord = "tree"
         print(display_ranWord)
         acc = 0
         guessed_letters = ''
+        progress = ''
 
         # User input to guess letter
         while True:
@@ -66,35 +68,31 @@ class Word:
             # Displays how many guesses you have made
             for attempts in range(1):
                 attempts = 10
-                acc = acc + 1
+                acc += 1
                 print("Attempt #:", acc)
                 attempts = attempts - acc
-
                 # Checks if input is valid (a single letter or if the input is same as length of the mystery word)
                 if guess in "abcdefghijklmnopqrstuvwxyz":
-                    if len(guess) == 0:
+                    if len(guess) == 1:
+                        progress += guess
                         print("You guessed: ", guess)
-
-                        #Checks if letter guessed is in mystery word
-                        # display_ranWord = self.random_word()
-                        # print(display_ranWord)
                         if guess in display_ranWord:
-                            print("you guessed it!")
-                            # guessed_words = guess + guess
-                            # print("Letters you have tried: ", guessed_words[1:])
-                        # could also be word.find(guess), if true return whatever if false continue
-                        else:
+                            print("you guessed one letter!")
+                        else: # Here call the Turtle and create a figure every time a user misses
                             print("try again")
-                            # guessed_words = guess + guess
-                            # print("Letters you have tried: ", guessed_words[1:])
                 # If input is not valid prints error
                 elif guess not in "abcdefghijklmnopqrstuvwxyz":
                     print("Input is not valid, Please enter a letter between 'a' and 'z': ")
-
                 # Prints number of guesses remaining
                 print("You have", attempts, "attempts remaining")
-                if attempts <= 0:
+
+                guessed_letters += ' ' + guess
+                print("Letters you have tried: ", guessed_letters)
+
+                # When you guess the word, it will compare it with your progress, if it's a match the user wins
+                if progress == display_ranWord and attempts > 0:
+                    print("You guessed the word! HOORAY!!!")
+                    return 1
+                elif attempts <= 0: # if attempts reach out the max, the user loses
                     print("Game Over!")
                     return -1  #  I use this to exit the While loop
-            guessed_letters += ' ' + guess
-            print("Letters you have tried: ", guessed_letters)

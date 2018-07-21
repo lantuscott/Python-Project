@@ -3,10 +3,10 @@
 
 def main():
     import src.hangman.Word as Word
-    import src.hangman.GuiConsole as Gui
+    import src.hangman.Drawer as Drawer
     gameStart = Word.Word()
     gameStart.game_logic()
-    guivaina = Gui.GuiConsole()
+    guivaina = Drawer.GuiConsole()
     guivaina.game_screen()
 
 
