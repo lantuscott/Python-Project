@@ -25,23 +25,30 @@ class Word:
     """
     This definition simply put, reads the file containing the words, puts them in a list called my_words
     """
-
-    def game_difficulty(self):
-        return input("What difficulty do you want? Easy=e, Medium=m, Hard=h: ")
-
     def read_words_from_file(self):
         path_to_utils = self.path_to_project + "/utils"
-        difficulty = self.game_difficulty()
-        if difficulty == "e":
-            words = open(path_to_utils + '/easy_words.txt', 'r')
-            self.my_words = words.read().split()
-        elif difficulty == "m":
-            words = open(path_to_utils + '/medium_words.txt', 'r')
-            self.my_words = words.read().split()
-        elif difficulty == "h":
-            words = open(path_to_utils + '/hard_words.txt', 'r')
-            self.my_words = words.read().split()
-        words.close()
+        while True:
+            letter = input("What difficulty do you want? Easy=e, Medium=m, Hard=h: ")
+            if letter in "emh":
+                if letter == "e":
+                    words = open(path_to_utils + '/easy_words.txt', 'r')
+                    self.my_words = words.read().split()
+                    words.close()
+                    break
+                elif letter == "m":
+                    words = open(path_to_utils + '/medium_words.txt', 'r')
+                    self.my_words = words.read().split()
+                    words.close()
+                    break
+                elif letter == "h":
+                    words = open(path_to_utils + '/hard_words.txt', 'r')
+                    self.my_words = words.read().split()
+                    words.close()
+                    break
+            elif letter not in "emh":
+                print("Input is not valid, Please enter either e for Easy, h for Hard, or m for Hard: ")
+
+
 
     """
     This definition returns the list of words
@@ -82,7 +89,7 @@ class Word:
         # User input to guess letter
         program_on = True
         while program_on:
-            if temp == '': # if 0 letters have been guessed it will display mystery word, otherwise it will display your progress
+            if temp == '':  # if 0 letters have been guessed it will display mystery word, otherwise it will display your progress
                 print("The word is :", mystery_word)
             else:
                 print("The word is :", temp)
