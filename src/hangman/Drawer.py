@@ -23,8 +23,8 @@ class Drawer:
         time.sleep(1)
         t.goto(-200, 250)
         t.write("Please enter a letter in the console, but beware! you will only have 10 attempts!", font=("Calibri", 10, "bold"))
-        time.sleep(5)
-        t.clear()
+        time.sleep(1)
+        t.undo()
 
     def draw_base1(self):
         t.goto(-250, -350)
@@ -124,28 +124,19 @@ class Drawer:
     def method_factory(self, methodNumber):
         if methodNumber == 0:
             self.draw_base1()
-            print("Methodnumber", methodNumber)
         elif methodNumber == 1:
             self.draw_base2()
-            print("Methodnumber", methodNumber)
         elif methodNumber == 2:
             self.draw_base3()
-            print("Methodnumber", methodNumber)
         elif methodNumber == 3:
             self.draw_base4()
-            print("Methodnumber", methodNumber)
         elif methodNumber == 4:
             self.draw_face()
-            print("Methodnumber", methodNumber)
         elif methodNumber == 5:
             self.draw_body()
-            print("Methodnumber", methodNumber)
         elif methodNumber == 6:
             self.draw_rightarm()
-            print("Methodnumber", methodNumber)
         elif methodNumber == 7:
             self.draw_leftarm()
-            print("Methodnumber", methodNumber)
         elif methodNumber == 8:
             self.draw_rightleg()
-            print("Methodnumber", methodNumber)

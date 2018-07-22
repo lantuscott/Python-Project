@@ -76,15 +76,19 @@ class Word:
         methodList = ['draw_base2()']
         remaining_letters = original_word_to_guess
         word_to_list = list(mystery_word)
-        print("The words is :", original_word_to_guess, mystery_word)
+        print("The word is :", original_word_to_guess)
+        print("The word is :", mystery_word)
         print('----------------------------------------------------')
         # User input to guess letter
         program_on = True
         while program_on:
-            print("Starred word: ", temp)
+            if temp == '': # if 0 letters have been guessed it will display mystery word, otherwise it will display your progress
+                print("The word is :", mystery_word)
+            else:
+                print("The word is :", temp)
             print("Attempt #:", acc)
             guess = input("Enter a letter: ")
-            guess = guess.lower()  # converts input to uppercase
+            guess = guess.lower()  # converts input to lowercase
 
             # Displays how many guesses you have made
             for attempts in range(1):
@@ -96,18 +100,17 @@ class Word:
                 if guess in "abcdefghijklmnopqrstuvwxyz":
                     if len(guess) == 1:
                         progress += guess
-                        # print("You guessed: ", guess)
                         if guess in remaining_letters:
                             remaining_letters = remaining_letters.replace(guess, '')
                             guessed_position = word_to_display.index(guess)
                             word_to_list[guessed_position] = guess
                             temp = "".join(word_to_list)
-                            print("Word is: ", temp)
-                            print("you guessed one letter!, regifgmaining letters to be guessed: ", remaining_letters)
+                            # print("Word is: ", temp)
+                            print("you guessed one letter!, remaining letters to be guessed: ", remaining_letters)
                         else:  # Here call the Turtle and create a figure every time a user misses
                             gui.method_factory(self.attempt_number)
                             self.attempt_number += 1
-                            print("try again, attempsts -> ", attempts, " attempt_number -> ", self.attempt_number)
+                            print("try again")
                 # If input is not valid prints error
                 elif guess not in "abcdefghijklmnopqrstuvwxyz":
                     print("Input is not valid, Please enter a letter between 'a' and 'z': ")
@@ -121,7 +124,7 @@ class Word:
                     gui.you_won()
                     program_on = False
                 elif attempts == 0:  # if attempts reach out the max, the user loses
-                    print("Game Over!", self.attempt_number)
+                    print("Game Over!")
                     gui.draw_leftleg()
                     gui.game_over()
                     program_on = False  # I use this to exit the While loop
