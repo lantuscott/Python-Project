@@ -66,7 +66,15 @@ class Word:
     def random_word(self):  # selects a word from dictionary to
         #  start game
         list = self.get_my_words()
-        return list[random.randint(0, len(list) - 1)]
+        word = list[random.randint(0, len(list) - 1)]
+        if len(word) > 7:
+            while len(word) > 7:
+                word = list[random.randint(0, len(list) - 1)]
+                if len(word) <= 7:
+                    return word
+        else:
+            return word
+
 
     # Checks if letter is in mystery word and tracks number of guesses made and remaining
     def game_logic(self):
@@ -145,3 +153,5 @@ class Word:
         for x in range(len(mystery_word)):
             stars += "*"
         return stars
+
+

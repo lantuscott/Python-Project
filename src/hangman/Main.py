@@ -13,7 +13,7 @@ def main():
 
     game = Word.Word()
     game.game_logic()
-
+    # print("Word is: ", game.random_word(), "length is: ", len(game.random_word()))
     # gui = Drawer.Drawer()
 
 
