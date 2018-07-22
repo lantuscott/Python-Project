@@ -112,29 +112,30 @@ class Drawer:
         t.exitonclick()
 
     def method_factory(self, methodNumber):
-        if methodNumber == 1:
+        if methodNumber == 0:
             self.draw_base1()
             print("Methodnumber", methodNumber)
-        elif methodNumber == 2:
+        elif methodNumber == 1:
             self.draw_base2()
-        elif methodNumber == 3:
+            print("Methodnumber", methodNumber)
+        elif methodNumber == 2:
             self.draw_base3()
-        elif methodNumber == 4:
+            print("Methodnumber", methodNumber)
+        elif methodNumber == 3:
             self.draw_base4()
-        elif methodNumber == 5:
+            print("Methodnumber", methodNumber)
+        elif methodNumber == 4:
             self.draw_face()
-        elif methodNumber == 6:
+            print("Methodnumber", methodNumber)
+        elif methodNumber == 5:
             self.draw_body()
-        elif methodNumber == 7:
+            print("Methodnumber", methodNumber)
+        elif methodNumber == 6:
             self.draw_rightarm()
-        elif methodNumber == 8:
+            print("Methodnumber", methodNumber)
+        elif methodNumber == 7:
             self.draw_leftarm()
-        elif methodNumber == 9:
+            print("Methodnumber", methodNumber)
+        elif methodNumber == 8:
             self.draw_rightleg()
             print("Methodnumber", methodNumber)
-        elif methodNumber == 10:
-            print("Methodnumber", methodNumber)
-            self.draw_leftleg()
-            self.game_over()
-            # print("Game Over!!")
-            t.exitonclick()
