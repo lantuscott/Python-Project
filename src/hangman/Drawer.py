@@ -2,6 +2,8 @@
 
 import turtle as t
 
+import time
+
 class Drawer:
 
     def game_screen(self):
@@ -9,12 +11,20 @@ class Drawer:
         t.speed("fastest") # Fastest speed
         t.hideturtle()
 
-        self.game_intro()
+        self.game_intro1()
+        self.game_intro2()
 
-    def game_intro(self):
+    def game_intro1(self):
         t.penup()
         t.goto(-200, 300)
         t.write("Let's play some Hangman!", font=("Calibri", 24, "bold"))
+
+    def game_intro2(self):
+        time.sleep(1)
+        t.goto(-200, 250)
+        t.write("Please enter a letter in the console, but beware! you will only have 10 attempts!", font=("Calibri", 10, "bold"))
+        time.sleep(5)
+        t.clear()
 
     def draw_base1(self):
         t.goto(-250, -350)
