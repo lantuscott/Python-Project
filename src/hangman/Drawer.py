@@ -2,20 +2,29 @@
 
 import turtle as t
 
+import time
 
 class Drawer:
 
     def game_screen(self):
         wn = t.Screen()
-        t.speed(10) # Fastest speed
+        t.speed("fastest") # Fastest speed
         t.hideturtle()
 
-        self.game_intro()
+        self.game_intro1()
+        self.game_intro2()
 
-    def game_intro(self):
+    def game_intro1(self):
         t.penup()
         t.goto(-200, 300)
         t.write("Let's play some Hangman!", font=("Calibri", 24, "bold"))
+
+    def game_intro2(self):
+        time.sleep(1)
+        t.goto(-200, 250)
+        t.write("Please enter a letter in the console, but beware! you will only have 10 attempts!", font=("Calibri", 10, "bold"))
+        time.sleep(1)
+        t.undo()
 
     def draw_base1(self):
         t.goto(-250, -350)
@@ -58,7 +67,7 @@ class Drawer:
         t.penup()
         t.left(90)
 
-    def draw_circle(self):
+    def draw_face(self):
         t.goto(-20, 0)
         t.pendown()
         t.circle(50)
@@ -100,6 +109,18 @@ class Drawer:
         t.forward(150)
         t.penup()
 
+    def game_over(self):
+        t.goto(-150, -50)
+        t.pencolor("red")
+        t.write("Game Over!", font=("Calibri", 40, "bold"))
+        t.exitonclick()
+
+    def you_won(self):
+        t.goto(-30, -50)
+        t.pencolor("green")
+        t.write("Congratulations, you won!", align="center", font=("Calibri", 40, "bold"))
+        t.exitonclick()
+
     def method_factory(self, methodNumber):
         if methodNumber == 0:
             self.draw_base1()
@@ -110,7 +131,7 @@ class Drawer:
         elif methodNumber == 3:
             self.draw_base4()
         elif methodNumber == 4:
-            self.draw_circle()
+            self.draw_face()
         elif methodNumber == 5:
             self.draw_body()
         elif methodNumber == 6:
@@ -119,7 +140,3 @@ class Drawer:
             self.draw_leftarm()
         elif methodNumber == 8:
             self.draw_rightleg()
-        elif methodNumber == 9:
-            self.draw_leftleg()
-            t.write("Game Over!")
-            t.exitonclick()

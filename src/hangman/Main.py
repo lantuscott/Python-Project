@@ -1,7 +1,5 @@
 # Leonardo Farinha
 
-import threading
-
 
 def main():
     import src.hangman.Word as Word
