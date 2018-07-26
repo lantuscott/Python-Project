@@ -84,6 +84,7 @@ class Word:
         methodList = ['draw_base2()']
         remaining_letters = original_word_to_guess
         word_to_list = list(mystery_word)
+        print("The word is :", original_word_to_guess)
         print("The word is :", mystery_word)
         print('----------------------------------------------------')
         # User input to guess letter
